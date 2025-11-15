@@ -3,8 +3,6 @@ import axios from 'axios';
 import { Mail, Send } from 'lucide-react';
 import './Contact.css';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -28,7 +26,7 @@ const Contact = () => {
     setStatus({ type: '', message: '' });
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/api/contact`, formData);
+      const response = await axios.post(`/api/contact`, formData);
       
       if (response.data.success) {
         setStatus({ 
