@@ -1,0 +1,183 @@
+.experience-page {
+  min-height: 100vh;
+  padding: 120px 40px 140px;
+}
+
+.experience-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.experience-title {
+  font-size: 64px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.9);
+  margin: 0 0 80px;
+  text-align: center;
+}
+
+.dark .experience-title {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #3f6ef1, #d0d4dc);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 60px;
+  animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -46px;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #3f6ef1;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 6px rgba(63, 110, 241, 0.2);
+}
+
+.timeline-content {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateX(8px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  gap: 20px;
+}
+
+.timeline-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.9);
+  margin: 0 0 8px;
+}
+
+.dark .timeline-title {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.timeline-company {
+  font-size: 18px;
+  font-weight: 500;
+  color: #3f6ef1;
+  margin: 0 0 4px;
+}
+
+.timeline-location {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0;
+}
+
+.dark .timeline-location {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.timeline-period {
+  padding: 8px 20px;
+  background: rgba(63, 110, 241, 0.15);
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.8);
+  white-space: nowrap;
+}
+
+.dark .timeline-period {
+  background: rgba(63, 110, 241, 0.25);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.timeline-description {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0;
+}
+
+.dark .timeline-description {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+@media (max-width: 768px) {
+  .experience-page {
+    padding: 100px 20px 120px;
+  }
+  
+  .experience-title {
+    font-size: 42px;
+    margin-bottom: 60px;
+  }
+  
+  .timeline {
+    padding-left: 30px;
+  }
+  
+  .timeline-marker {
+    left: -36px;
+  }
+  
+  .timeline-content {
+    padding: 24px;
+  }
+  
+  .timeline-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .timeline-title {
+    font-size: 20px;
+  }
+  
+  .timeline-period {
+    align-self: flex-start;
+  }
+}
