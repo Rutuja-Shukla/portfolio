@@ -1,7 +1,6 @@
-// API configuration
-const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? '' // In production, use relative URLs (Vercel handles routing)
-  : 'http://localhost:8000'; // In development, use full backend URL
+// If VITE_API_BASE_URL is set (local), use it
+// If not (production), use "" so /api works automatically
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
 export default API_BASE_URL;
 
