@@ -1,10 +1,11 @@
 import React from 'react';
 import { Download } from 'lucide-react';
+import API_BASE_URL from '../config/api';
 import './DownloadResume.css';
 
 const DownloadResume = () => {
   const handleDownload = () => {
-    window.open(`/api/resume`, '_blank');
+    window.open(`${API_BASE_URL}/api/resume`, '_blank');
   };
 
   return (

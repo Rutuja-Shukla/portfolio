@@ -80,6 +80,19 @@ const Projects = () => {
                 </div>
                 
                 <p className="modal-description">{selectedProject.fullDescription}</p>
+
+                {selectedProject.githubUrl && (
+                  <div className="modal-links">
+                    <a
+                      href={selectedProject.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="modal-link-button"
+                    >
+                      View on GitHub
+                    </a>
+                  </div>
+                )}
               </div>
               
               <div className="modal-right">

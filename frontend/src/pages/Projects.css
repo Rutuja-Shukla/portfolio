@@ -323,11 +323,40 @@
   font-size: 15px;
   line-height: 1.7;
   color: rgba(0, 0, 0, 0.75);
-  margin: 0;
+  margin: 0 0 24px;
 }
 
 .dark .modal-description {
   color: rgba(255, 255, 255, 0.8);
+}
+
+.modal-links {
+  margin-top: 8px;
+}
+
+.modal-link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 999px;
+  border: none;
+  background: #000;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-link-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dark .modal-link-button {
+  background: #fff;
+  color: #000;
 }
 
 .modal-image {

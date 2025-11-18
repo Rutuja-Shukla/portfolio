@@ -81,32 +81,41 @@ if (config.enableVisualEdits) {
 }
 
 // Setup dev server with visual edits and/or health check
-if (config.enableVisualEdits || config.enableHealthCheck) {
-  webpackConfig.devServer = (devServerConfig) => {
-    // Apply visual edits dev server setup if enabled
-    if (config.enableVisualEdits && setupDevServer) {
-      devServerConfig = setupDevServer(devServerConfig);
-    }
-
-    // Add health check endpoints if enabled
-    if (config.enableHealthCheck && setupHealthEndpoints && healthPluginInstance) {
-      const originalSetupMiddlewares = devServerConfig.setupMiddlewares;
-
-      devServerConfig.setupMiddlewares = (middlewares, devServer) => {
-        // Call original setup if exists
-        if (originalSetupMiddlewares) {
-          middlewares = originalSetupMiddlewares(middlewares, devServer);
-        }
-
-        // Setup health endpoints
-        setupHealthEndpoints(devServer, healthPluginInstance);
-
-        return middlewares;
-      };
-    }
-
-    return devServerConfig;
+webpackConfig.devServer = (devServerConfig) => {
+  // Add proxy configuration for API requests (always add this)
+  if (!devServerConfig.proxy) {
+    devServerConfig.proxy = {};
+  }
+  devServerConfig.proxy['/api'] = {
+    target: 'http://localhost:8000',
+    changeOrigin: true,
+    secure: false,
+    logLevel: 'debug',
   };
-}
+
+  // Apply visual edits dev server setup if enabled
+  if (config.enableVisualEdits && setupDevServer) {
+    devServerConfig = setupDevServer(devServerConfig);
+  }
+
+  // Add health check endpoints if enabled
+  if (config.enableHealthCheck && setupHealthEndpoints && healthPluginInstance) {
+    const originalSetupMiddlewares = devServerConfig.setupMiddlewares;
+
+    devServerConfig.setupMiddlewares = (middlewares, devServer) => {
+      // Call original setup if exists
+      if (originalSetupMiddlewares) {
+        middlewares = originalSetupMiddlewares(middlewares, devServer);
+      }
+
+      // Setup health endpoints
+      setupHealthEndpoints(devServer, healthPluginInstance);
+
+      return middlewares;
+    };
+  }
+
+  return devServerConfig;
+};
 
 module.exports = webpackConfig;

@@ -1,24 +1,29 @@
-from fastapi import FastAPI, HTTPException
+"""
+Local development server for API endpoints
+Run with: uvicorn api.server:app --reload --port 8000
+Or: python -m uvicorn api.server:app --reload --port 8000
+"""
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi import HTTPException
 from pydantic import BaseModel, EmailStr
-from mangum import Mangum
 from motor.motor_asyncio import AsyncIOMotorClient
 from datetime import datetime
 from dotenv import load_dotenv
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-import aiosmtplib
 import uuid
 import os
 import logging
+from pathlib import Path
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import aiosmtplib
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-load_dotenv()
-
-app = FastAPI()
+app = FastAPI(title="Rutuja Shukla Portfolio API", version="1.0.0")
 
 # CORS middleware
 app.add_middleware(
@@ -35,23 +40,33 @@ try:
     db_name = os.environ.get("DB_NAME")
     
     if not mongo_url or not db_name:
-        logger.error("MONGO_URL or DB_NAME environment variables not set")
+        logger.warning("MONGO_URL or DB_NAME environment variables not set - database features will be disabled")
         client = None
         db = None
     else:
         client = AsyncIOMotorClient(mongo_url)
         db = client[db_name]
+        logger.info("MongoDB connection established")
 except Exception as e:
     logger.error(f"Failed to connect to MongoDB: {e}")
     client = None
     db = None
 
+BASE_DIR = Path(__file__).resolve().parent
+load_dotenv(BASE_DIR / ".env")
+
 # Email configuration
 SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.gmail.com")
 SMTP_PORT = int(os.environ.get("SMTP_PORT", "587"))
-SMTP_USER = os.environ.get("SMTP_USER")
-SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
-RECIPIENT_EMAIL = os.environ.get("RECIPIENT_EMAIL", SMTP_USER)
+SMTP_USER = os.environ.get("SMTP_USER")  # Your email address
+SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")  # Your email password or app password
+RECIPIENT_EMAIL = os.environ.get("RECIPIENT_EMAIL", SMTP_USER)  # Email to receive notifications
+
+# Models
+class ContactForm(BaseModel):
+    name: str
+    email: EmailStr
+    message: str
 
 # Email sending function
 async def send_email_notification(contact_data: dict):
@@ -61,11 +76,13 @@ async def send_email_notification(contact_data: dict):
         return False
     
     try:
+        # Create message
         message = MIMEMultipart("alternative")
         message["From"] = SMTP_USER
         message["To"] = RECIPIENT_EMAIL
         message["Subject"] = f"New Contact Form Submission from {contact_data['name']}"
         
+        # Create email body
         text = f"""
 New Contact Form Submission
 
@@ -90,11 +107,14 @@ Submitted at: {contact_data['timestamp']}
         </html>
         """
         
+        # Add parts
         part1 = MIMEText(text, "plain")
         part2 = MIMEText(html, "html")
         message.attach(part1)
         message.attach(part2)
         
+        # Send email
+        # Gmail with port 587 requires STARTTLS (not direct SSL)
         await aiosmtplib.send(
             message,
             hostname=SMTP_HOST,
@@ -111,12 +131,36 @@ Submitted at: {contact_data['timestamp']}
         logger.error(f"Failed to send email notification: {e}", exc_info=True)
         return False
 
-class ContactForm(BaseModel):
-    name: str
-    email: EmailStr
-    message: str
+# Routes
+@app.get("/")
+async def root():
+    return {
+        "message": "Rutuja Shukla Portfolio API",
+        "status": "healthy",
+        "endpoints": {
+            "contact": "/api/contact",
+            "resume": "/api/resume",
+            "health": "/api/health"
+        }
+    }
 
-@app.post("/")
+@app.get("/api")
+async def api_root():
+    return {
+        "message": "Rutuja Shukla Portfolio API",
+        "status": "healthy",
+        "endpoints": {
+            "contact": "/api/contact",
+            "resume": "/api/resume",
+            "health": "/api/health"
+        }
+    }
+
+@app.get("/api/health")
+async def health():
+    return {"status": "healthy"}
+
+@app.post("/api/contact")
 async def submit_contact(form: ContactForm):
     try:
         data = {
@@ -134,6 +178,7 @@ async def submit_contact(form: ContactForm):
                 logger.info(f"Contact form submitted successfully: {data['id']}")
             except Exception as db_error:
                 logger.warning(f"Database save failed, but continuing: {db_error}")
+                # Continue even if DB save fails
         else:
             logger.warning("MongoDB not configured - contact form data logged but not saved")
             logger.info(f"Contact form submission: {data}")
@@ -148,11 +193,35 @@ async def submit_contact(form: ContactForm):
             "message": "Message sent successfully!",
             "data": data 
         }
-    except HTTPException:
-        raise
     except Exception as e:
         logger.error(f"Error submitting contact form: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Failed to send message: {str(e)}")
 
-# Export handler for Vercel
-handler = Mangum(app)
+@app.get("/api/resume")
+async def download_resume():
+    try:
+        pdf_path = BASE_DIR / "assets" / "RutujaShukla_Resume.pdf"
+        
+        if not pdf_path.exists():
+            logger.error(f"Resume file not found at: {pdf_path}")
+            raise HTTPException(status_code=404, detail="Resume file not found")
+        
+        logger.info(f"Serving resume from: {pdf_path}")
+        return FileResponse(
+            pdf_path,
+            media_type="application/pdf",
+            filename="Rutuja_Shukla_Resume.pdf",
+            headers={
+                "Content-Disposition": "attachment; filename=Rutuja_Shukla_Resume.pdf"
+            }
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error serving resume: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"Failed to serve resume: {str(e)}")
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+
