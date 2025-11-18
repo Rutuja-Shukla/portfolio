@@ -1,158 +1,70 @@
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, EmailStr
-from mangum import Mangum
-from motor.motor_asyncio import AsyncIOMotorClient
+from http.server import BaseHTTPRequestHandler
+import json
 from datetime import datetime
-from dotenv import load_dotenv
+import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-import aiosmtplib
-import uuid
 import os
-import logging
+import uuid
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+class handler(BaseHTTPRequestHandler):
 
-load_dotenv()
+    def do_POST(self):
+        try:
+            # Read body
+            length = int(self.headers.get("Content-Length", 0))
+            body = self.rfile.read(length)
+            data = json.loads(body)
 
-app = FastAPI()
+            name = data.get("name")
+            email = data.get("email")
+            message = data.get("message")
 
-# CORS middleware
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+            contact_data = {
+                "id": str(uuid.uuid4()),
+                "name": name,
+                "email": email,
+                "message": message,
+                "timestamp": datetime.utcnow().isoformat()
+            }
 
-# MongoDB connection
-try:
-    mongo_url = os.environ.get("MONGO_URL")
-    db_name = os.environ.get("DB_NAME")
-    
-    if not mongo_url or not db_name:
-        logger.error("MONGO_URL or DB_NAME environment variables not set")
-        client = None
-        db = None
-    else:
-        client = AsyncIOMotorClient(mongo_url)
-        db = client[db_name]
-except Exception as e:
-    logger.error(f"Failed to connect to MongoDB: {e}")
-    client = None
-    db = None
+            # Send email (SMTP)
+            self.send_email(contact_data)
 
-# Email configuration
-SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.gmail.com")
-SMTP_PORT = int(os.environ.get("SMTP_PORT", "587"))
-SMTP_USER = os.environ.get("SMTP_USER")
-SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
-RECIPIENT_EMAIL = os.environ.get("RECIPIENT_EMAIL", SMTP_USER)
+            # Response
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps({
+                "success": True,
+                "message": "Message sent successfully!",
+                "data": contact_data
+            }).encode())
 
-# Email sending function
-async def send_email_notification(contact_data: dict):
-    """Send email notification when contact form is submitted"""
-    if not SMTP_USER or not SMTP_PASSWORD:
-        logger.warning("SMTP credentials not configured - email notification skipped")
-        return False
-    
-    try:
-        message = MIMEMultipart("alternative")
-        message["From"] = SMTP_USER
-        message["To"] = RECIPIENT_EMAIL
-        message["Subject"] = f"New Contact Form Submission from {contact_data['name']}"
-        
-        text = f"""
-New Contact Form Submission
+        except Exception as e:
+            self.send_response(500)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps({"error": str(e)}).encode())
 
-Name: {contact_data['name']}
-Email: {contact_data['email']}
-Message:
-{contact_data['message']}
+    def send_email(self, contact):
+        SMTP_USER = os.getenv("SMTP_USER")
+        SMTP_PASS = os.getenv("SMTP_PASSWORD")
+        SMTP_HOST = os.getenv("SMTP_HOST", "smtp.gmail.com")
+        SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
+        RECIPIENT = os.getenv("RECIPIENT_EMAIL", SMTP_USER)
 
-Submitted at: {contact_data['timestamp']}
-        """
-        
-        html = f"""
-        <html>
-          <body>
-            <h2>New Contact Form Submission</h2>
-            <p><strong>Name:</strong> {contact_data['name']}</p>
-            <p><strong>Email:</strong> {contact_data['email']}</p>
-            <p><strong>Message:</strong></p>
-            <p>{contact_data['message'].replace(chr(10), '<br>')}</p>
-            <p><em>Submitted at: {contact_data['timestamp']}</em></p>
-          </body>
-        </html>
-        """
-        
-        part1 = MIMEText(text, "plain")
-        part2 = MIMEText(html, "html")
-        message.attach(part1)
-        message.attach(part2)
-        
-        await aiosmtplib.send(
-            message,
-            hostname=SMTP_HOST,
-            port=SMTP_PORT,
-            username=SMTP_USER,
-            password=SMTP_PASSWORD,
-            start_tls=True,
-            use_tls=False,
-        )
-        
-        logger.info(f"Email notification sent successfully to {RECIPIENT_EMAIL}")
-        return True
-    except Exception as e:
-        logger.error(f"Failed to send email notification: {e}", exc_info=True)
-        return False
+        msg = MIMEMultipart()
+        msg["From"] = SMTP_USER
+        msg["To"] = RECIPIENT
+        msg["Subject"] = f"New Contact Form from {contact['name']}"
 
-class ContactForm(BaseModel):
-    name: str
-    email: EmailStr
-    message: str
+        msg.attach(MIMEText(
+            f"Name: {contact['name']}\nEmail: {contact['email']}\nMessage:\n{contact['message']}",
+            "plain"
+        ))
 
-@app.post("/")
-async def submit_contact(form: ContactForm):
-    try:
-        data = {
-            "id": str(uuid.uuid4()),
-            "name": form.name,
-            "email": form.email,
-            "message": form.message,
-            "timestamp": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
-        }
-        
-        # Try to save to database if available
-        if db:
-            try:
-                await db.contacts.insert_one(data)
-                logger.info(f"Contact form submitted successfully: {data['id']}")
-            except Exception as db_error:
-                logger.warning(f"Database save failed, but continuing: {db_error}")
-        else:
-            logger.warning("MongoDB not configured - contact form data logged but not saved")
-            logger.info(f"Contact form submission: {data}")
-        
-        # Send email notification
-        email_sent = await send_email_notification(data)
-        if not email_sent:
-            logger.warning("Email notification was not sent (check SMTP configuration)")
-        
-        return { 
-            "success": True, 
-            "message": "Message sent successfully!",
-            "data": data 
-        }
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"Error submitting contact form: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=f"Failed to send message: {str(e)}")
-
-# Export handler for Vercel
-handler = Mangum(app)
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+            server.starttls()
+            server.login(SMTP_USER, SMTP_PASS)
+            server.sendmail(SMTP_USER, RECIPIENT, msg.as_string())
