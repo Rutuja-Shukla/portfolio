@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Mail, Send } from 'lucide-react';
+import { Mail, Send, Linkedin, Github } from 'lucide-react';
 import API_BASE_URL from '../config/api';
 import './Contact.css';
 
@@ -62,7 +62,7 @@ const Contact = () => {
           <div className="contact-info">
             <h2 className="contact-subtitle">Let's work together</h2>
             <p className="contact-description">
-              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+              Feel free to connect with me on LinkedIn, Email, or GitHub. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
             </p>
             
             <div className="contact-details">
@@ -71,6 +71,20 @@ const Contact = () => {
                 <div>
                   <h4>Email</h4>
                   <a href="mailto:rutujamahek@gmail.com">rutujamahek@gmail.com</a>
+                </div>
+              </div>
+              <div className="contact-detail-item">
+                <Linkedin size={24} />
+                <div>
+                  <h4>LinkedIn</h4>
+                  <a href="https://www.linkedin.com/in/rutuja-shukla-117543208/" target="_blank" rel="noopener noreferrer">Rutuja Shukla</a>
+                </div>
+              </div>
+              <div className="contact-detail-item">
+                <Github size={24} />
+                <div>
+                  <h4>GitHub</h4>
+                  <a href="https://github.com/rutuja-shukla" target="_blank" rel="noopener noreferrer">rutuja-shukla</a>
                 </div>
               </div>
             </div>
