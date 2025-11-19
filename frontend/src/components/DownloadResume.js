@@ -1,11 +1,10 @@
 import React from 'react';
 import { Download } from 'lucide-react';
-import API_BASE_URL from '../config/api';
 import './DownloadResume.css';
 
 const DownloadResume = () => {
   const handleDownload = () => {
-    window.open(`${API_BASE_URL}/api/resume`, '_blank');
+    window.open('https://drive.google.com/file/d/1Pi951BdIdF57BUmYAD7ndHRM-lSkA8-6/view?usp=sharing', '_blank');
   };
 
   return (

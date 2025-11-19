@@ -1,62 +1,12 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { Mail, Send, Linkedin, Github } from 'lucide-react';
-import API_BASE_URL from '../config/api';
+import React from 'react';
+import { Mail, Linkedin, Github } from 'lucide-react';
 import './Contact.css';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  
-  const [status, setStatus] = useState({ type: '', message: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setStatus({ type: '', message: '' });
-
-    try {
-      const response = await axios.post("/api/contact", formData);
-
-      
-      if (response.data.success) {
-        setStatus({ 
-          type: 'success', 
-          message: 'Thank you! Your message has been sent successfully.' 
-        });
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        setStatus({ 
-          type: 'error', 
-          message: 'Something went wrong. Please try again.' 
-        });
-      }
-    } catch (error) {
-      console.error('Contact form error:', error);
-      setStatus({ 
-        type: 'error', 
-        message: 'Failed to send message. Please try again later.' 
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <div className="contact-page">
       <div className="contact-container">
-        <h1 className="contact-title">Get In Touch</h1>
+        <h1 className="contact-title">Connect</h1>
         
         <div className="contact-grid">
           <div className="contact-info">
@@ -88,68 +38,6 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-          </div>
-          
-          <div className="contact-form-wrapper">
-            <form onSubmit={handleSubmit} className="contact-form">
-              <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  placeholder="Your name"
-                />
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  placeholder="your.email@example.com"
-                />
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows="6"
-                  placeholder="Your message..."
-                ></textarea>
-              </div>
-              
-              {status.message && (
-                <div className={`status-message ${status.type}`}>
-                  {status.message}
-                </div>
-              )}
-              
-              <button 
-                type="submit" 
-                className="submit-btn"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Sending...' : (
-                  <>
-                    <Send size={18} />
-                    <span>Send Message</span>
-                  </>
-                )}
-              </button>
-            </form>
           </div>
         </div>
       </div>

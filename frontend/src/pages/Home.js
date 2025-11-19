@@ -12,8 +12,7 @@ const Home = () => {
           a Senior Software Developer.
         </h2>
         <p className="home-description">
-          I build scalable, secure, and reliable web applications —<br />
-          from backend architectures to modern frontend experiences.
+          Senior Software Engineer with 3+ years of experience delivering enterprise-grade software in banking and financial systems. Strong background in backend engineering, full-stack development, API development, system integration, microservices, SQL, and Agile delivery. Experienced in UI development using Angular and in building full-stack applications with Node.js, following modern API standards and high-quality code practices. Known for translating complex business requirements into scalable technical solutions, improving system performance, and collaborating effectively with cross-functional engineering teams.
         </p>
       </div>
     </div>
