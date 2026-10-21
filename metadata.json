@@ -1,0 +1,8 @@
+{
+  "name": "Rutuja Shukla Portfolio",
+  "description": "Portfolio website of Rutuja Shukla, Senior Software Developer specializing in backend engineering, distributed systems, and machine learning.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

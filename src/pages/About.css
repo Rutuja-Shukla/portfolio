@@ -1,0 +1,373 @@
+.about-page {
+  min-height: 100vh;
+  padding: 120px 40px 140px;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.about-intro {
+  margin-bottom: 40px;
+}
+
+.about-intro h2 {
+  font-size: 52px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.9);
+  line-height: 1.2;
+}
+
+.dark .about-intro h2 {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.about-intro p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 16px;
+  max-width: 960px;
+}
+
+.dark .about-intro p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.about-profile-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.profile-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.dark .profile-tag {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.workplace-callout {
+  background: rgba(63, 110, 241, 0.12);
+  border: 1px solid rgba(63, 110, 241, 0.3);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin: 32px 0 44px;
+}
+
+.dark .workplace-callout {
+  background: rgba(63, 110, 241, 0.15);
+  border-color: rgba(63, 110, 241, 0.35);
+}
+
+.workplace-callout h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dark .workplace-callout h4 {
+  color: #93c5fd;
+}
+
+.workplace-callout p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.8);
+  margin: 0;
+}
+
+.dark .workplace-callout p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-top: 48px;
+  margin-bottom: 24px;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.dark .section-title {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.skills-section {
+  margin-bottom: 56px;
+}
+
+.skills-category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.skill-category-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 22px;
+  border-radius: 18px;
+  transition: all 0.3s ease;
+}
+
+.skill-category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.skill-category-card.featured-card {
+  border-color: rgba(63, 110, 241, 0.5);
+  background: rgba(63, 110, 241, 0.08);
+}
+
+.dark .skill-category-card.featured-card {
+  border-color: rgba(99, 102, 241, 0.4);
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.skill-category-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.85);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dark .skill-category-title {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.skill-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-badge {
+  background: rgba(63, 110, 241, 0.15);
+  color: rgba(0, 0, 0, 0.8);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.dark .skill-badge {
+  background: rgba(63, 110, 241, 0.25);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.skill-badge.badge-primary {
+  background: #3f6ef1;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.dark .skill-badge.badge-primary {
+  background: #4f46e5;
+  color: #ffffff;
+}
+
+.experience-section {
+  margin-bottom: 56px;
+}
+
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.experience-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 32px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.experience-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.1);
+}
+
+.dark .experience-card {
+  background: rgba(26, 26, 46, 0.6);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.exp-role {
+  font-size: 22px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 4px;
+}
+
+.dark .exp-role {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.exp-company-loc {
+  font-size: 16px;
+  font-weight: 600;
+  color: #3f6ef1;
+}
+
+.dark .exp-company-loc {
+  color: #93c5fd;
+}
+
+.exp-duration-badge {
+  padding: 6px 16px;
+  border-radius: 50px;
+  background: rgba(63, 110, 241, 0.18);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.dark .exp-duration-badge {
+  background: rgba(63, 110, 241, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.exp-bullet-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.exp-bullet-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.dark .exp-bullet-item {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.education-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.dark .education-card {
+  background: rgba(26, 26, 46, 0.6);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.education-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 4px;
+}
+
+.dark .education-title {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.education-inst {
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.dark .education-inst {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.education-badge {
+  padding: 8px 20px;
+  border-radius: 50px;
+  background: rgba(63, 110, 241, 0.15);
+  font-size: 14px;
+  font-weight: 600;
+  color: #3f6ef1;
+}
+
+.dark .education-badge {
+  background: rgba(63, 110, 241, 0.25);
+  color: #93c5fd;
+}
+
+@media (max-width: 768px) {
+  .about-page {
+    padding: 100px 20px 120px;
+  }
+
+  .about-intro h2 {
+    font-size: 36px;
+  }
+
+  .experience-card {
+    padding: 24px;
+  }
+
+  .exp-role {
+    font-size: 18px;
+  }
+}
