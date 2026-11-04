@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, ExternalLink, Sparkles } from 'lucide-react';
+import { X, ExternalLink, Sparkles, Layers, CheckCircle } from 'lucide-react';
 import GithubIcon from '../components/GithubIcon';
 import { projectsData, Project } from '../data/projects';
 import './Projects.css';
@@ -18,6 +18,9 @@ export const Projects: React.FC = () => {
     document.body.style.overflow = 'unset';
   };
 
+  const flagshipCount = projectsData.filter((p) => p.category === 'Flagship').length;
+  const mlCount = projectsData.filter((p) => p.category === 'Machine Learning & Analytics').length;
+
   const filteredProjects = projectsData.filter((project) => {
     if (activeFilter === 'flagship') return project.category === 'Flagship';
     if (activeFilter === 'ml') return project.category === 'Machine Learning & Analytics';
@@ -30,7 +33,7 @@ export const Projects: React.FC = () => {
         <div className="projects-header">
           <h1 className="projects-title">Projects</h1>
           <p className="projects-subtitle">
-            Enterprise-grade distributed platforms, financial regulatory systems, and high-throughput systems developed through professional delivery and self-driven career engineering.
+            Enterprise-grade agentic AI workflows, financial investigation platforms, distributed engines, and quantitative systems built with high engineering rigor.
           </p>
 
           <div className="projects-filter-bar">
@@ -45,13 +48,13 @@ export const Projects: React.FC = () => {
               onClick={() => setActiveFilter('flagship')}
             >
               <Sparkles size={14} className="inline mr-1" />
-              Flagship Distributed & FinTech (3)
+              Flagship & Enterprise Systems ({flagshipCount})
             </button>
             <button
               className={`filter-btn ${activeFilter === 'ml' ? 'active' : ''}`}
               onClick={() => setActiveFilter('ml')}
             >
-              Machine Learning & Data Science (4)
+              Machine Learning & Data Science ({mlCount})
             </button>
           </div>
         </div>
@@ -116,7 +119,7 @@ export const Projects: React.FC = () => {
                 <p className="modal-year">Year: {selectedProject.year}</p>
                 
                 <div className="modal-tags">
-                  <strong>Technology Stack:</strong>
+                  <strong>Core Stack:</strong>
                   <div className="modal-stack-list">
                     {selectedProject.stack.map((tech, idx) => (
                       <span key={idx} className="modal-tag">{tech}</span>
@@ -138,6 +141,34 @@ export const Projects: React.FC = () => {
                       <span>View on GitHub</span>
                       <ExternalLink size={14} />
                     </a>
+                  </div>
+                )}
+
+                {/* Detailed System Architecture Breakdown */}
+                {selectedProject.architectureDetails && selectedProject.architectureDetails.length > 0 && (
+                  <div className="modal-architecture">
+                    <h3 className="modal-architecture-title">
+                      <Layers size={18} className="text-blue-500" />
+                      Complete Architectural & Engineering Breakdown
+                    </h3>
+                    <div className="arch-sections-container">
+                      {selectedProject.architectureDetails.map((section, sIdx) => (
+                        <div key={sIdx} className="arch-card">
+                          <div className="arch-card-header">
+                            <CheckCircle size={15} className="text-blue-500 flex-shrink-0" />
+                            <span>{section.category}</span>
+                          </div>
+                          <ul className="arch-points-list">
+                            {section.points.map((pt, pIdx) => (
+                              <li key={pIdx} className="arch-point-item">
+                                <span className="arch-bullet-icon" />
+                                <span>{pt}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>

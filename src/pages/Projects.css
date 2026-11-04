@@ -447,6 +447,97 @@
   object-fit: cover;
 }
 
+/* Architecture Breakdown in Modal */
+.modal-architecture {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .modal-architecture {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.modal-architecture-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.9);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dark .modal-architecture-title {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.arch-sections-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.arch-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 14px;
+  padding: 18px;
+  text-align: left;
+}
+
+.dark .arch-card {
+  background: rgba(15, 15, 30, 0.6);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.arch-card-header {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dark .arch-card-header {
+  color: #93c5fd;
+}
+
+.arch-points-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.arch-point-item {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.dark .arch-point-item {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.arch-bullet-icon {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3f6ef1;
+  margin-top: 7px;
+  flex-shrink: 0;
+}
+
 @media (max-width: 1024px) {
   .projects-grid {
     grid-template-columns: 1fr;

@@ -95,6 +95,18 @@ export const resumeData: ResumeData = {
   ],
   projects: [
     {
+      title: 'AgentFlow — Enterprise Agentic AI Workflow & Financial Investigation Platform',
+      stack: ['React 19', 'TypeScript', 'Node.js 22', 'Gemini 4 Argon', 'Express', 'Tailwind CSS v4', 'SHA-256 Audit Chain'],
+      description:
+        'AI-powered financial operations investigation platform that orchestrates specialized agents to investigate failed transactions, reconcile double-entry ledgers, retrieve operational policies, and generate audit-backed investigation reports with deterministic arithmetic.'
+    },
+    {
+      title: 'ReviewPilot — AI-Powered Code Review & Automated Testing Agent',
+      stack: ['React 19', 'TypeScript', 'Gemini 3.8 Flash', 'Node.js 22', 'Express', 'esbuild', 'AST Parsers', 'Vitest'],
+      description:
+        'AI-powered code review and automated testing platform combining contextual LLM analysis with deterministic offline AST static analysis across TypeScript, Python, Java, and C# to generate evidence-based findings and production-ready unit tests.'
+    },
+    {
       title: 'Payment Ledger & Reconciliation Platform',
       stack: ['Java 21', 'Spring Boot', 'React', 'Kafka', 'PostgreSQL', 'Redis'],
       description:
