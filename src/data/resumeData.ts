@@ -50,7 +50,7 @@ export const resumeData: ResumeData = {
   title: 'Full-Stack Software Engineer',
   nationality: 'Indian',
   relocation: 'Open to relocation to New Zealand',
-  languagesSpoken: ['English (Fluent)', 'Hindi (Fluent)', 'Mandarin (Beginner)'],
+  languagesSpoken: ['English (Fluent)', 'Hindi (Fluent)'],
   contact: {
     phone: '+918451845728',
     email: 'rutujamahek@gmail.com',
