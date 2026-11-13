@@ -62,10 +62,10 @@ export const About: React.FC = () => {
         <div className="about-intro">
           <h2>About Me</h2>
           <p>
-            I'm <strong>{resumeData.name}</strong>, a Full-Stack Software Engineer with 4+ years of hands-on experience at Barclays delivering end-to-end backend and modern UI integrations for global compliance, risk, and financial platforms.
+            {resumeData.summary}
           </p>
           <p>
-            I specialize in architecting scalable microservices, low-latency API contracts, distributed data pipelines, and database optimization under stringent international banking regulations and high-availability SLAs.
+            I own the end-to-end engineering lifecycle from SQL Server database design, table creation, and stored procedure optimization to C#/.NET Core REST APIs and Angular frontend integrations—combining clean architecture, Test-Driven Development (TDD), CI/CD governance, and validated AI-assisted workflows.
           </p>
 
           <div className="about-profile-highlights">

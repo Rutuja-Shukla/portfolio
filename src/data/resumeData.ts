@@ -58,14 +58,14 @@ export const resumeData: ResumeData = {
     github: 'https://github.com/Rutuja-Shukla',
   },
   summary:
-    'Full-Stack Software Engineer specializing in enterprise microservices, secure RESTful API development, and distributed data pipelines. 4+ years of hands-on experience at Barclays delivering end-to-end backend and modern UI integrations for global compliance and risk platforms. Strong background in C#/.NET core, Angular, SQL database optimization, DevOps CI/CD pipelines, and Unit testing (> 90% coverage) under strict international banking regulations.',
+    'Full-Stack Software Engineer specializing in enterprise microservices, secure RESTful API development, and distributed data pipelines. 4+ years of hands-on experience at Barclays delivering end-to-end backend and modern UI integrations for global compliance and risk platforms. Strong background in C#/.NET core, Angular, SQL database optimization, DevOps CI/CD pipelines with a strong focus on code quality, clean architecture, maintainable solutions and engineering best practices.',
   skills: {
     databases: ['SQL Server', 'PostgreSQL', 'Redis'],
     backend: ['C#', '.NET 8 / Core', 'C++', 'C', 'JavaScript', 'Java (21)', 'TypeScript', 'Python', 'Go (Golang)', 'Spring Boot'],
     frontend: ['Angular', 'Node.js', 'React (18/19)', 'Vite', 'Tailwind CSS', 'HTML5', 'CSS3'],
     devops: ['Docker', 'Kubernetes', 'GitHub Actions (CI/CD)', 'GitLab', 'OpenTelemetry', 'Jenkins', 'Prometheus'],
     apisAndTools: ['Swagger', 'Postman', 'Insomnia', 'Bitbucket', 'SonarQube', 'Jira', 'Confluence', 'gRPC'],
-    engineeringPractices: ['Agile/Scrum', 'Code Reviews', 'Unit Testing (>90% coverage)', 'TDD', 'Performance Optimization', 'Technical Documentation'],
+    engineeringPractices: ['Agile/Scrum', 'Code Reviews', 'Unit Testing', 'TDD', 'Performance Optimization', 'Technical Documentation', 'AI-Assisted Engineering (Claude AI, GitLab Duo, GitHub Copilot)'],
     domainKnowledge: ['Banking Systems', 'Risk & Finance Platforms', 'Regulatory & Compliance Systems'],
   },
   experience: [
@@ -75,10 +75,10 @@ export const resumeData: ResumeData = {
       duration: 'Apr 2025 – Present',
       location: 'Pune, India',
       responsibilities: [
-        'Architected and delivered scalable full-stack features, leading end-to-end backend microservices (.NET Core/APIs) and Angular enterprise UI integrations.',
-        'Optimized system performance and query latency by 20% across distributed workflows through Redis API-level caching, SQL indexing, and frontend state optimization.',
-        'Diagnosed and resolved 20+ critical production defects and performance bottlenecks, coordinating cross-team root-cause analysis to ensure 99.9% high availability.',
-        'Spearheaded Agile ceremonies, code reviews, and DevOps workflows, ensuring zero-downtime deployments and 100% compliance with global banking security standards.'
+        'Developed and delivered full-stack applications, owning the development lifecycle from SQL Server database design, table creation, and stored procedure development to C#/.NET Core REST APIs and Angular frontend integration.',
+        'Resolved 20+ critical production defects across backend microservices, database layers, and Angular interfaces through cross-functional collaboration and root-cause analysis, supporting 99.9% application availability.',
+        'Drove engineering excellence and delivery governance through Agile ceremonies, technical discussions, code reviews and CI/CD workflows, ensuring reliable deployments and adherence to global banking security standards.',
+        'Leveraged AI-assisted development tools, including Claude AI, GitLab Duo, and GitHub Copilot, to accelerate development, code reviews, and test creation while validating AI-generated outputs against engineering standards.'
       ]
     },
     {
@@ -87,9 +87,9 @@ export const resumeData: ResumeData = {
       duration: 'Aug 2022 – Mar 2025',
       location: 'Pune, India',
       responsibilities: [
-        'Engineered 5+ OAuth/Bearer-authenticated backend data pipelines and optimized complex SQL transformation logic, reducing analytical processing times by 10%.',
-        'Authored detailed technical specs and system architecture diagrams for 4 large-scale backend services, establishing clean component interfaces and data models.',
-        'Enforced strict banking security protocols and Test-Driven Development (TDD), writing robust unit/integration tests to maintain > 90% code coverage across backend repositories.'
+        'Developed scalable backend services and data pipelines using C#/.NET Core, SQL Server, and REST APIs, owning database development from table design and creation to stored procedures and optimized SQL transformation logic.',
+        'Improved application performance by Redis API-level caching, SQL query and stored procedure optimization, and efficient Angular rendering and state management.',
+        'Maintained high engineering quality standards through unit and integration testing, Test-Driven Development (TDD), code reviews, and CI/CD practices, consistently achieving high code quality.'
       ]
     }
   ],

@@ -103,7 +103,7 @@ export const Contact: React.FC = () => {
                 <div>
                   <h4>Updated Resume</h4>
                   <a
-                    href="/assets/aistudio/Rutuja_Shukla_CV_31d3fb6b.pdf"
+                    href="/assets/aistudio/Rutuja_Shukla_cfd7dd99.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

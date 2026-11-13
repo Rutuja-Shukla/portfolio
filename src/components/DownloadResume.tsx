@@ -5,7 +5,7 @@ import './DownloadResume.css';
 export const DownloadResume: React.FC = () => {
   const handleDownload = () => {
     // Primary path to the updated resume PDF
-    const resumePath = '/assets/aistudio/Rutuja_Shukla_CV_31d3fb6b.pdf';
+    const resumePath = '/assets/aistudio/Rutuja_Shukla_cfd7dd99.pdf';
     
     // Create an anchor link and trigger download/view
     const link = document.createElement('a');

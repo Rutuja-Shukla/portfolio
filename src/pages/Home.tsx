@@ -47,16 +47,16 @@ export const Home: React.FC = () => {
             <div className="metric-label">Years at Barclays</div>
           </div>
           <div className="metric-card">
-            <div className="metric-number">20%</div>
-            <div className="metric-label">Query Latency Reduced</div>
-          </div>
-          <div className="metric-card">
-            <div className="metric-number">&gt;90%</div>
-            <div className="metric-label">Unit Test Coverage</div>
+            <div className="metric-number">20+</div>
+            <div className="metric-label">Critical Defects Resolved</div>
           </div>
           <div className="metric-card">
             <div className="metric-number">99.9%</div>
-            <div className="metric-label">High Availability SLA</div>
+            <div className="metric-label">Application Availability</div>
+          </div>
+          <div className="metric-card">
+            <div className="metric-number">9.21</div>
+            <div className="metric-label">B.Tech CGPA (/ 10)</div>
           </div>
         </div>
 
@@ -77,7 +77,7 @@ export const Home: React.FC = () => {
             Experience & Skills
           </button>
           <a
-            href="/assets/aistudio/Rutuja_Shukla_CV_31d3fb6b.pdf"
+            href="/assets/aistudio/Rutuja_Shukla_cfd7dd99.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary-home"
