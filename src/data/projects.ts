@@ -204,6 +204,201 @@ export const projectsData: Project[] = [
   },
   {
     id: 3,
+    title: 'SupportPilot — Autonomous Customer Support Agent Platform',
+    shortTitle: 'SupportPilot',
+    role: 'Enterprise Agentic AI & Support Orchestration Architect',
+    stack: [
+      'TypeScript',
+      'React',
+      'Express',
+      'Tailwind CSS',
+      'Gemini 3.8 Flash',
+      'Gemini Embedding 2',
+      'RAG Vector Search',
+      '7-Stage State Machine',
+      '14 Backend Tools'
+    ],
+    year: '2025',
+    category: 'Flagship',
+    featured: true,
+    description:
+      'Enterprise-grade autonomous AI customer support orchestration platform featuring a 7-stage agent state machine, semantic RAG policy retrieval, 14 production backend tools, and human-in-the-loop escalations.',
+    fullDescription:
+      'SupportPilot is an enterprise-grade autonomous AI customer support orchestration platform. It demonstrates real agentic state machine workflows, intent detection, retrieval-augmented generation (RAG), backend tool invocation, customer context management, ticket lifecycle operations, and human-in-the-loop escalations across 105+ synthetic customers, 210+ orders, and 32 official knowledge base articles.',
+    architectureDetails: [
+      {
+        category: '1. 7-Stage Autonomous Agent State Machine',
+        points: [
+          'Stage 1 — Security Firewall: Real-time inspection for prompt injections, system override directives, and jailbreak patterns.',
+          'Stage 2 — Context Retrieval: Hydrates customer tier, lifetime spend, order history, and past tickets with tenant isolation.',
+          'Stage 3 — Structured Intent Detection: Powered by Gemini (gemini-3.8-flash) with strict JSON schema outputs (intent, confidence %, urgency, sentiment, and extracted entities).',
+          'Stage 4 — Semantic RAG Policy Retrieval: Indexes 32 official company documentation articles using vector embeddings (gemini-embedding-2-preview) and cosine similarity matching.',
+          'Stage 5 — Action Planning & Safety Verification: Evaluates business policy eligibility before invoking tools (e.g. 30-day return windows, cancellation only prior to shipment).',
+          'Stage 6 — Consequential Action Confirmation: Enforces explicit, interactive customer confirmation before executing consequential state mutations (cancellations or refunds).',
+          'Stage 7 — Grounded Response Generation: Cites official knowledge base article titles and grounds responses strictly in backend data without hallucinations.'
+        ]
+      },
+      {
+        category: '2. 14 Production Backend Tools',
+        points: [
+          'Customer Tools: get_customer_profile, get_customer_orders, get_customer_support_history',
+          'Order Tools: get_order_status, get_order_details, check_cancellation_eligibility, request_order_cancellation',
+          'Refund Tools: check_refund_eligibility, create_refund_request, get_refund_status',
+          'Ticket Tools: create_support_ticket, update_support_ticket, assign_support_ticket, get_ticket_status',
+          'Knowledge Tools: search_knowledge_base, retrieve_policy_document'
+        ]
+      },
+      {
+        category: '3. Comprehensive Application Modules',
+        points: [
+          'Executive Operations Dashboard: Dynamically computed KPIs (total conversations, autonomous resolution rate, escalation trends, priority matrix, specialist leaderboard, and live activity feed).',
+          'AI Customer Chat: Real-time customer experience with persona switcher (VIP, Standard, At-Risk), interactive confirmation modals, grounded citations, and live 7-stage state machine inspector.',
+          'Human Support Workspace: Dedicated queue for incoming escalations with AI summaries, recommended actions, and an interactive human reply console.',
+          'Support Tickets Operations: Ticket lifecycle manager with status transitions (New, Open, In Progress, Escalated, Resolved, Closed), priority tags, and internal audit notes timeline.',
+          'Conversations Explorer: Session browser with transcripts, resolution mode indicators, and chat jump triggers.',
+          'Customers & Orders Directory: 105+ synthetic customers and 210+ orders with carrier tracking histories and manual action triggers.',
+          'Knowledge Base: 32 articles with an interactive Semantic RAG Sandbox to test vector similarity queries live.',
+          'Agent Monitoring & Telemetry: Tool execution logs, input/output inspection, latency telemetry, and immutable audit events.',
+          'Automated Evaluation Suite: Automated benchmark runner executing 8 test scenarios with 100% pass verification across intent accuracy, tool execution, safety limits, and anti-hallucination checks.'
+        ]
+      }
+    ],
+    image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&q=80',
+    githubUrl: 'https://github.com/Rutuja-Shukla/SupportPilot-Autonomous-Customer-Support-Agent'
+  },
+  {
+    id: 4,
+    title: 'KnowledgeHub — Enterprise RAG Knowledge Assistant',
+    shortTitle: 'KnowledgeHub',
+    role: 'Enterprise AI & RAG Systems Architect',
+    stack: [
+      'React 19',
+      'TypeScript',
+      'Vite',
+      'Tailwind CSS v4',
+      'Node.js',
+      'Express',
+      '@google/genai',
+      'Gemini 3.8 Flash',
+      'Gemini Embedding 2',
+      'Hybrid BM25 + Vector',
+      'RBAC',
+      'Recharts'
+    ],
+    year: '2025',
+    category: 'Flagship',
+    featured: true,
+    description:
+      'Production-grade enterprise Retrieval-Augmented Generation (RAG) platform enabling teams to query internal corporate docs with RBAC permissions, hybrid vector+BM25 search, and verified citations.',
+    fullDescription:
+      'KnowledgeHub is a production-grade, enterprise Retrieval-Augmented Generation (RAG) platform built for cross-functional organizations. It enables employees, security teams, people operations, and managers to query internal corporate knowledge and receive verified, factual answers strictly grounded in authorized documentation with verifiable citations across 30 seeded enterprise documents and 6 collections.',
+    architectureDetails: [
+      {
+        category: '1. 9-Stage Query & Retrieval Pipeline',
+        points: [
+          'Query Understanding & Firewall: Normalizes incoming text, extracts query intent keywords, and protects against prompt injection attempts (SYSTEM OVERRIDE, password exfiltration, role bypass).',
+          'Access Control & RBAC: Enforces collection-level and document-level permissions on the server before vector similarity matching.',
+          'Query Embedding: Computes dense vector representations using Gemini gemini-embedding-2 or a deterministic 384-dimensional dense projection engine with cosine distance.',
+          'Hybrid Retrieval: Combines dense semantic vector similarity with token-frequency BM25 keyword matching via configurable alpha weights (hybridScore = alpha * vectorScore + (1 - alpha) * keywordScore).',
+          'Reranking & Redundancy Pruning: Cross-evaluates title and section matches using reciprocal rank fusion to bubble up top-tier evidentiary chunks.',
+          'Context Assembly: Enforces context token limits and packages source chunks into structured evidence blocks ([Doc Title - Page X: Section Title]).',
+          'Grounded Generation: Generates answers using gemini-3.8-flash with a strict evidence-only system instruction.',
+          'Citation Validation: Verifies that every cited document ID and page number exists in the retrieved chunks; hallucinated citations are rejected and unanswerable queries trigger a safe refusal.',
+          'Feedback & Audit Trail: Records query latency (retrieval ms vs generation ms), chunks retrieved, model used, and user feedback into immutable audit logs.'
+        ]
+      },
+      {
+        category: '2. Ingestion & Vector Indexing Pipeline',
+        points: [
+          'Multi-format text extraction supporting PDF, DOCX, TXT, Markdown, and CSV.',
+          'Structure preservation maintaining pages, sections, and markdown headers as metadata.',
+          'Configurable semantic chunking (default 500 characters with 80-character overlap) and vector indexing.',
+          'Lifecycle monitoring tracked through uploaded -> queued -> extracting -> chunking -> embedding -> indexed (or failed), with idempotent reprocessing.'
+        ]
+      },
+      {
+        category: '3. 11 Enterprise Modules & Seeded Collections',
+        points: [
+          'Overview Dashboard, Ask KnowledgeHub (RAG Chat with click-to-preview citations), Knowledge Library, Document Processing, Collections, Search Explorer (Hybrid/Semantic/Keyword), Analytics (P50/P90 latency), Evaluation Centre (Recall@K, Precision@K, MRR, Faithfulness), User Management (10 personas across Admin, Knowledge Manager, Employee), Audit Logs, and Hyperparameter Settings.',
+          'Pre-seeded with 30 internally consistent enterprise documents across 6 collections: Engineering (ENG), HR & People Ops (HR), Finance (FIN), Security (SEC), Compliance & Risk (COMP), and Customer Support (SUP).'
+        ]
+      },
+      {
+        category: '4. Technology Stack & Storage',
+        points: [
+          'Frontend: React 19, TypeScript, Vite, Tailwind CSS v4, Lucide Icons, Recharts.',
+          'Backend & AI: Node.js, Express, TSX, @google/genai (Gemini 3.8 Flash & Gemini Embedding 2), Multer.',
+          'Storage: Typed Relational & Vector Storage Engine (data/knowledgehub_store.json).'
+        ]
+      }
+    ],
+    image: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&q=80',
+    githubUrl: 'https://github.com/Rutuja-Shukla/KnowledgeHub-Enterprise-RAG-Knowledge-Assistant'
+  },
+  {
+    id: 5,
+    title: 'Sentinel — AI Fraud Detection and Investigation System',
+    shortTitle: 'Sentinel',
+    role: 'Financial Crime & Risk Engineering Architect',
+    stack: [
+      'React 19',
+      'TypeScript',
+      'Tailwind CSS v4',
+      'Node.js',
+      'Express',
+      'Gemini 3.8 Flash',
+      '@google/genai',
+      'Recharts',
+      'Framer Motion',
+      '10 Fraud Rules',
+      'Z-Score / IQR',
+      'ACID Audit Ledger'
+    ],
+    year: '2025',
+    category: 'Flagship',
+    featured: true,
+    description:
+      'Enterprise-grade financial crime operations platform engineered for real-time transaction surveillance, deterministic 10-rule + statistical risk scoring, explainable AI case analysis, and auditable case management.',
+    fullDescription:
+      'Sentinel is an enterprise-grade financial crime operations platform engineered for real-time transaction surveillance, multi-signal risk assessment, explainable AI case analysis, and auditable case management. It strictly isolates deterministic numerical risk scoring from AI reasoning while providing empirical ML ground-truth evaluation across 1,200 synthetic banking transactions.',
+    architectureDetails: [
+      {
+        category: '1. Deterministic Fraud Rules Engine (10 Rules)',
+        points: [
+          'RULE_HIGH_AMOUNT & RULE_VELOCITY: Flags transactions exceeding 3.5σ or 4x historical average and high-frequency bursts (> 3 transactions within 10 minutes).',
+          'RULE_GEO_LEAP & RULE_OFF_HOURS_ANOMALY: Computes Haversine spatial distance and elapsed time (flagging implied travel speed > 850 km/h) and high-value activity between 01:00–05:00 UTC.',
+          'RULE_FAILED_BURST & RULE_RAPID_DRAIN: Flags successful authorizations after 2+ declined attempts and rapid fund liquidations (> 80% drain) following large deposits.',
+          'RULE_FREQUENCY_SURGE, RULE_NEW_MERCHANT_BURST, RULE_IDENTICAL_AMOUNTS & RULE_DEVICE_FINGERPRINT: Detects 24h frequency surges (> 3.5x), elevated MCC unobserved merchants, card testing (3+ identical amounts in 15m), and shared device fingerprints across 3+ accounts.'
+        ]
+      },
+      {
+        category: '2. Statistical Anomaly & Transparent Risk Scoring',
+        points: [
+          'Statistical Anomaly Detection Engine: Parametric (Z-Score) and non-parametric (IQR) scoring, spatial displacement (km), travel speed (km/h), temporal intervals, novel device/merchant indicators, and an Isolation Tree Anomaly Factor proxy across normalized multi-dimensional vectors.',
+          'Transparent Risk Scoring: Weighted fusion model with correlation damping across tiers Low (0–29), Medium (30–59), High (60–79), and Critical (80–100) with granular rule justifications; AI models never generate or alter numerical scores.'
+        ]
+      },
+      {
+        category: '3. Explainable AI Assistant & Case Management',
+        points: [
+          'Explainable AI Investigation Assistant: Server-side Gemini 3.8 Flash (@google/genai) with structured JSON schemas (Type.OBJECT) generating Executive Summaries, Behavioral Pattern Analysis, Threat Evidence, Benign Explanations, and Investigator Checklists with deterministic forensic fallback.',
+          'Investigation Case Management & Auditing: Complete lifecycle (NEW → UNDER_INVESTIGATION → ESCALATED → AWAITING_INFO → CONFIRMED_FRAUD / RESOLVED_LEGITIMATE → CLOSED), regulatory remedies (ACCOUNT_RESTRICTED, FUNDS_HELD, MERCHANT_DISPUTE, FALSE_POSITIVE_WHITELIST), and append-only compliance ledger with JSON state diffs.'
+        ]
+      },
+      {
+        category: '4. Automated Testing & ML Ground-Truth Evaluation',
+        points: [
+          '8 Automated Invariant Tests: Boundary validation, duplicate idempotency, geo-leap calculations, decline bursts, Z-score sensitivity, score range bounds, RBAC enforcement, and audit trail integrity.',
+          'Machine Learning Evaluation: Empirical benchmarking against 1,200 labeled synthetic banking transactions computing live Confusion Matrix (TP, FP, TN, FN), Precision, Recall, F1 Score, and False Positive Rate (FPR) with an interactive cutoff slider (20–90 pts).',
+          'Tech Stack: React 19, TypeScript, Tailwind CSS v4, Lucide Icons, Recharts, Framer Motion, Node.js, Express, tsx, @google/genai, and an ACID in-memory repository with JSON snapshot persistence.'
+        ]
+      }
+    ],
+    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80',
+    githubUrl: 'https://github.com/Rutuja-Shukla/Sentinel-AI-Fraud-Detection-and-Investigation-Platform'
+  },
+  {
+    id: 6,
     title: 'Payment Ledger & Reconciliation Platform',
     shortTitle: 'Payment Ledger',
     role: 'Distributed Systems & FinTech Architect',
@@ -219,7 +414,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/Rutuja-Shukla'
   },
   {
-    id: 4,
+    id: 7,
     title: 'Risk & Regulatory Reporting Workbench',
     shortTitle: 'Risk Workbench',
     role: 'Full-Stack Enterprise FinTech Engineer',
@@ -235,7 +430,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/Rutuja-Shukla'
   },
   {
-    id: 5,
+    id: 8,
     title: 'Distributed Job Scheduler',
     shortTitle: 'Distributed Scheduler',
     role: 'Cloud-Native & Distributed Systems Engineer',
@@ -251,7 +446,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/Rutuja-Shukla'
   },
   {
-    id: 6,
+    id: 9,
     title: 'Sentiment Analysis',
     shortTitle: 'Sentiment Analysis',
     role: 'Machine Learning & NLP',
@@ -266,7 +461,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/Rutuja-Shukla/Sentiment-Analysis.git'
   },
   {
-    id: 7,
+    id: 10,
     title: 'Stock Prediction',
     shortTitle: 'Stock Prediction',
     role: 'Quantitative Machine Learning',
@@ -281,7 +476,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/Rutuja-Shukla/Stock-Prediction.git'
   },
   {
-    id: 8,
+    id: 11,
     title: 'Clustering Geolocation Data',
     shortTitle: 'Geolocation Clustering',
     role: 'Data Scientist',
@@ -296,7 +491,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/Rutuja-Shukla/Clustering-Geolocation-Data.git'
   },
   {
-    id: 9,
+    id: 12,
     title: 'Handwritten Digit Recognition',
     shortTitle: 'Digit Recognition',
     role: 'Machine Learning Developer',

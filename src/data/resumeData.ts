@@ -107,6 +107,24 @@ export const resumeData: ResumeData = {
         'AI-powered code review and automated testing platform combining contextual LLM analysis with deterministic offline AST static analysis across TypeScript, Python, Java, and C# to generate evidence-based findings and production-ready unit tests.'
     },
     {
+      title: 'SupportPilot — Autonomous Customer Support Agent Platform',
+      stack: ['TypeScript', 'React', 'Express', 'Tailwind CSS', 'Gemini 3.8 Flash', 'Gemini Embedding 2', 'RAG', '7-Stage State Machine'],
+      description:
+        'Enterprise-grade autonomous AI customer support orchestration platform featuring a 7-stage agent state machine, semantic RAG policy retrieval across 32 docs, 14 production backend tools, and human-in-the-loop escalations.'
+    },
+    {
+      title: 'KnowledgeHub — Enterprise RAG Knowledge Assistant',
+      stack: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS v4', 'Express', 'Gemini 3.8 Flash', 'Gemini Embedding 2', 'Hybrid BM25 + Vector'],
+      description:
+        'Production-grade enterprise Retrieval-Augmented Generation (RAG) platform with a 9-stage query/retrieval pipeline, RBAC access enforcement, hybrid vector+BM25 search, and verifiable citations across 30 enterprise documents.'
+    },
+    {
+      title: 'Sentinel — AI Fraud Detection & Investigation System',
+      stack: ['React 19', 'TypeScript', 'Tailwind CSS v4', 'Express', 'Gemini 3.8 Flash', 'Recharts', 'Framer Motion', '10 Fraud Rules'],
+      description:
+        'Enterprise-grade financial crime operations platform engineered for real-time transaction surveillance, deterministic 10-rule + Z-Score/IQR risk scoring, explainable AI case analysis, and ML evaluation across 1,200 transactions.'
+    },
+    {
       title: 'Payment Ledger & Reconciliation Platform',
       stack: ['Java 21', 'Spring Boot', 'React', 'Kafka', 'PostgreSQL', 'Redis'],
       description:
