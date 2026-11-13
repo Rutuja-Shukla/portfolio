@@ -49,7 +49,7 @@ export const resumeData: ResumeData = {
   name: 'Rutuja Shukla',
   title: 'Full-Stack Software Engineer',
   nationality: 'Indian',
-  relocation: 'Open to relocation to Mainland China',
+  relocation: 'Open to relocation to New Zealand',
   languagesSpoken: ['English (Fluent)', 'Hindi (Fluent)', 'Mandarin (Beginner)'],
   contact: {
     phone: '+918451845728',
