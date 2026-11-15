@@ -409,8 +409,32 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
+.modal-demo-creds {
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(63, 110, 241, 0.12);
+  border: 1px solid rgba(63, 110, 241, 0.25);
+  font-size: 13.5px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.dark .modal-demo-creds {
+  background: rgba(63, 110, 241, 0.2);
+  border-color: rgba(63, 110, 241, 0.35);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.modal-demo-creds code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 600;
+}
+
 .modal-links {
   margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .modal-link-button {
@@ -429,6 +453,11 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.modal-link-button.modal-link-primary {
+  background: #3f6ef1;
+  color: #fff;
+}
+
 .modal-link-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -437,6 +466,11 @@
 .dark .modal-link-button {
   background: #fff;
   color: #000;
+}
+
+.dark .modal-link-button.modal-link-primary {
+  background: #3f6ef1;
+  color: #fff;
 }
 
 .modal-image {

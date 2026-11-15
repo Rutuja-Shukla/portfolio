@@ -95,6 +95,18 @@ export const resumeData: ResumeData = {
   ],
   projects: [
     {
+      title: 'NexusBank — Enterprise Banking Integration & Intelligence Platform',
+      stack: ['ASP.NET Core 8', 'C# 12', 'EF Core 8', 'React 19', 'TypeScript', 'SQL Server / SQLite', 'Redis 7', 'Kafka', 'OpenTelemetry', 'Docker'],
+      description:
+        'Operational control plane (.NET 8 modular monolith across 24 tables + React 19 console) managing banking integrations, SHA-256 idempotent payments, atomic double-entry ledgers, transactional outbox/Kafka streaming, OpenTelemetry tracing, and RBAC security with 69 passing tests.'
+    },
+    {
+      title: 'MarketPulse AI — Evidence-Driven Market Intelligence Platform',
+      stack: ['React 18', 'TypeScript', 'TanStack Query', 'ECharts', 'React Flow', 'Python', 'FastAPI', 'PostgreSQL + pgvector', 'Redis', 'Celery', 'Gemini 2.0 Flash'],
+      description:
+        'Editorial, evidence-traceable market intelligence platform featuring 12 decision surfaces (Failure/Opportunity Radars, Intelligence Graph, Simulator, Trust Centre), a deterministic sentiment/taxonomy core with Gemini enrichment, 22 SQLAlchemy models, and Celery/Redis async pipelines.'
+    },
+    {
       title: 'AgentFlow — Enterprise Agentic AI Workflow & Financial Investigation Platform',
       stack: ['React 19', 'TypeScript', 'Node.js 22', 'Gemini 4 Argon', 'Express', 'Tailwind CSS v4', 'SHA-256 Audit Chain'],
       description:

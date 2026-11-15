@@ -16,6 +16,8 @@ export interface Project {
   architectureDetails?: ArchitectureSection[];
   image: string;
   githubUrl: string;
+  liveUrl?: string;
+  demoCredentials?: string;
   category?: 'Flagship' | 'Machine Learning & Analytics';
   featured?: boolean;
 }
@@ -23,6 +25,133 @@ export interface Project {
 export const projectsData: Project[] = [
   {
     id: 1,
+    title: 'NexusBank — Enterprise Banking Integration & Intelligence Platform',
+    shortTitle: 'NexusBank',
+    role: 'Full-Stack Enterprise Banking & Distributed Systems Architect',
+    stack: [
+      'ASP.NET Core 8',
+      'C# 12',
+      'EF Core 8',
+      'React 19',
+      'TypeScript 5.7',
+      'SQL Server 2022',
+      'SQLite',
+      'Redis 7',
+      'Confluent.Kafka',
+      'OpenTelemetry',
+      'Serilog',
+      'Docker'
+    ],
+    year: '2026',
+    category: 'Flagship',
+    featured: true,
+    description:
+      'Operational control plane for a banking integration estate — managing integrations, idempotent payments, double-entry ledgers, Kafka event streams, OpenTelemetry observability, and incidents with ASP.NET Core 8 and React 19.',
+    fullDescription:
+      'NexusBank is a working full-stack operational control plane for running the integrations, payments, events, observability, and incidents of a banking technology estate. Built on a .NET 8 modular monolith (7 backend projects + 2 test suites across 24 tables) and a yellow-on-charcoal React 19 + TypeScript operational console, every dashboard metric is backed by live API records and probes with explicit degraded-mode honesty when external cache or broker services are disabled.',
+    architectureDetails: [
+      {
+        category: '1. Financial Safety & Core Engineering Highlights',
+        points: [
+          'Payment Idempotency & Atomic Consistency: Idempotency-Key header with SHA-256 canonical request hashing, stored responses, 24h expiry, and unique (Scope, Key) index (replay returns original result; payload mismatch returns 409 idempotency_key_reuse). Payment, journey steps, ledger entries, outbox message, audit entry, and idempotency record commit atomically in one SaveChanges.',
+          'Double-Entry Ledger: Every completed payment posts equal debit and credit entries (append-only, NEXUSBANK-SUSPENSE for external beneficiaries), exposing ledgerDebitTotal, ledgerCreditTotal, and ledgerBalanced reconciliation checks.',
+          'Transactional Outbox & Kafka Streaming: Business writes + OutboxMessages commit together and publish every 5s (batch 25) with exponential backoff. Confluent.Kafka producer (Acks.All, idempotence) + consumer worker with lag/heartbeat tracking, DLQ quarantine/replay, and explicit isSimulated fallback when Kafka is disabled.',
+          'Security & Auth: HS256 JWT (30m) + 48-byte SHA-256 hashed rotating refresh tokens, BCrypt (cost 12), 5-attempt lockout, server-enforced [Authorize(Policy = NexusPermissions.X)] policies, rate limiting (600/min global, 12/min auth), and append-only audit trail.'
+        ]
+      },
+      {
+        category: '2. 9 Operational Console Modules',
+        points: [
+          'Command Centre (live aggregated telemetry & interactive integration dependency topology map), Integration Hub (register, probe, toggle, audit history), and API Explorer (endpoint catalogue & live request builder with caller token).',
+          'Payment Operations (create, inspect, refund, reverse payments, journey timeline, ledger verification), Event Streaming (topics, partitions, consumer lag, dead-letter replay), and Incidents (severity state machine, timeline, root cause).',
+          'Observability (traffic, latency distribution, error groups, traces, log feed, rule-based alerts), Security Centre (users, roles/permissions, sessions, access history), and System Health (live database, cache, broker, integration, and worker probes).'
+        ]
+      },
+      {
+        category: '3. Modular Monolith & Technology Stack',
+        points: [
+          'Backend (.NET 8 / C# 12): Modular monolith across NexusBank.Api, Application, Domain, Infrastructure, IntegrationServices, Workers, and Shared; EF Core 8 supporting SQL Server 2022 (migrations provider of record) and SQLite.',
+          'Frontend: React 19, TypeScript 5.7, Vite 6, Tailwind CSS, Radix primitives, TanStack Query 5, React Router 7, React Hook Form + Zod, Recharts, Lucide, and Sonner.',
+          'Observability & Caching: Serilog structured logging (CorrelationId, ClientIp, no PII/tokens), OpenTelemetry ASP.NET Core + HttpClient W3C tracing, /metrics Prometheus exposition, and Redis 7 IDistributedCache with automatic IMemoryCache fallback.'
+        ]
+      },
+      {
+        category: '4. Automated Testing, CI/CD & Live Deployment',
+        points: [
+          'Verified Test Suites: 36 xUnit unit/service tests (SQLite in-memory), 14 WebApplicationFactory integration tests, and 19 Vitest + React Testing Library frontend tests (69/69 passing).',
+          'CI & Live Hosting: GitHub Actions (.NET Release build, tests, idempotent EF Core migration check, container builds), multi-stage Docker Compose (SQL Server + Redis + Kafka + API + Console), Vercel static SPA console with same-origin /api proxy rewrites, and Render API hosting (seeded accounts: admin@, ops@, dev@, auditor@).'
+        ]
+      }
+    ],
+    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80',
+    githubUrl: 'https://github.com/Rutuja-Shukla/NexusBank-Enterprise-Intelligence-Platform',
+    liveUrl: 'https://nexus-bank-sand.vercel.app',
+    demoCredentials: 'ops@nexusbank.dev / NexusBank!2026'
+  },
+  {
+    id: 2,
+    title: 'MarketPulse AI — Evidence-Driven Market Intelligence Platform',
+    shortTitle: 'MarketPulse AI',
+    role: 'Full-Stack AI & Market Intelligence Engineer',
+    stack: [
+      'React 18',
+      'TypeScript',
+      'Vite',
+      'TanStack Query',
+      'ECharts',
+      'React Flow',
+      'Python 3.11+',
+      'FastAPI',
+      'SQLAlchemy 2',
+      'PostgreSQL + pgvector',
+      'Redis',
+      'Celery',
+      'Gemini 2.0 Flash',
+      'Tavily / Brave'
+    ],
+    year: '2026',
+    category: 'Flagship',
+    featured: true,
+    description:
+      'Editorial, evidence-traceable AI market intelligence platform transforming scattered public signals into structured Failure/Opportunity Radars, Intelligence Graphs, Simulators, and executable roadmaps using React, FastAPI, PostgreSQL/pgvector, Redis/Celery, and Gemini.',
+    fullDescription:
+      'Market intelligence that shows its working. MarketPulse AI turns scattered public signal — reviews, discussions, support threads, releases, and comparisons — into a structured, evidence-traceable view of where a product is failing, where the market is moving, and what to do next. Designed with an editorial interface (warm ivory paper, navy ink, serif display type, monospaced figures) that strictly separates observed evidence, interpretation, hypothesis, and recommendation.',
+    architectureDetails: [
+      {
+        category: '1. 12 Editorial Intelligence Surfaces',
+        points: [
+          'Core Synthesis: Overview (executive synthesis & evidence strength), Failure Radar (underperformance severity & sources), Opportunity Radar (impact vs. effort), Customer Voice (representative verbatim signals), and Competitor Intelligence (dimensional comparison with sources).',
+          'Decision & Trust Tools: Intelligence Graph (React Flow linking complaints → risks → opportunities), Simulator (stated-assumption impact modelling), Roadmap (sequenced, editable actions), Analytics (ECharts sentiment, topics, geography, severity), Evidence & Trust Centre (provenance, confidence, contradictions), Print-Ready Executive Report, and Market Monitor.'
+        ]
+      },
+      {
+        category: '2. Deterministic Analysis Core & Honest AI Orchestration',
+        points: [
+          'Deterministic Core: Sentiment, topic taxonomy assignment, failure/opportunity detection, and severity scoring are computed deterministically from evidence; optional Gemini 2.0 Flash enrichment enhances phrasing with schema validation and never fabricates findings.',
+          'Zero Fake Citations & Explicit Modes: Live research projects only complete when records carry real URLs, fetchable sources, and quotable text (findings without evidence are dropped). Supports Tavily/Brave + Gemini full pipeline, heuristic fallback without an LLM key, and a clearly labelled synthetic demo workspace.'
+        ]
+      },
+      {
+        category: '3. Full-Stack Architecture & Data Persistence',
+        points: [
+          'Frontend: React 18 + TypeScript + Vite, TanStack Query, React Hook Form + Zod, ECharts, and React Flow with dark-mode persistence.',
+          'Backend & Workers: FastAPI with PBKDF2-SHA256 password hashing, HS256 JWT auth, rate limiting (60/hr AI budget), 22 SQLAlchemy 2 tables across PostgreSQL (+ pgvector) / SQLite with Alembic migrations, and Redis + Celery background worker (or inline thread runner).'
+        ]
+      },
+      {
+        category: '4. Testing & Containerized Deployment',
+        points: [
+          'Automated Verification: Backend pytest suites (auth, project workflows, analysis engines), frontend unit/component tests, and full Playwright E2E journey (analyst registration, 7-step research studio brief, pipeline execution, analysis suite walkthrough).',
+          'Docker Compose Stack: Orchestrates nginx-served frontend (:8080), FastAPI (:8000/docs), Celery worker, PostgreSQL (:5432), and internal Redis.'
+        ]
+      }
+    ],
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+    githubUrl: 'https://github.com/Rutuja-Shukla/MarketPulseAI',
+    demoCredentials: 'demo@marketpulse.ai / DemoPass123!'
+  },
+  {
+    id: 3,
     title: 'AgentFlow — Enterprise Agentic AI Workflow and Financial Investigation Platform',
     shortTitle: 'AgentFlow',
     role: 'FinTech & Agentic AI Architect',
@@ -101,7 +230,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/Rutuja-Shukla/AgentFlow'
   },
   {
-    id: 2,
+    id: 4,
     title: 'ReviewPilot — AI-Powered Code Review and Automated Testing Agent',
     shortTitle: 'ReviewPilot',
     role: 'Full-Stack AI & Developer Tooling Engineer',
@@ -203,7 +332,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/Rutuja-Shukla/ReviewPilot'
   },
   {
-    id: 3,
+    id: 5,
     title: 'SupportPilot — Autonomous Customer Support Agent Platform',
     shortTitle: 'SupportPilot',
     role: 'Enterprise Agentic AI & Support Orchestration Architect',
@@ -267,7 +396,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/Rutuja-Shukla/SupportPilot-Autonomous-Customer-Support-Agent'
   },
   {
-    id: 4,
+    id: 6,
     title: 'KnowledgeHub — Enterprise RAG Knowledge Assistant',
     shortTitle: 'KnowledgeHub',
     role: 'Enterprise AI & RAG Systems Architect',
@@ -336,7 +465,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/Rutuja-Shukla/KnowledgeHub-Enterprise-RAG-Knowledge-Assistant'
   },
   {
-    id: 5,
+    id: 7,
     title: 'Sentinel — AI Fraud Detection and Investigation System',
     shortTitle: 'Sentinel',
     role: 'Financial Crime & Risk Engineering Architect',
@@ -398,7 +527,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/Rutuja-Shukla/Sentinel-AI-Fraud-Detection-and-Investigation-Platform'
   },
   {
-    id: 6,
+    id: 8,
     title: 'Payment Ledger & Reconciliation Platform',
     shortTitle: 'Payment Ledger',
     role: 'Distributed Systems & FinTech Architect',
@@ -414,7 +543,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/Rutuja-Shukla'
   },
   {
-    id: 7,
+    id: 9,
     title: 'Risk & Regulatory Reporting Workbench',
     shortTitle: 'Risk Workbench',
     role: 'Full-Stack Enterprise FinTech Engineer',
@@ -430,7 +559,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/Rutuja-Shukla'
   },
   {
-    id: 8,
+    id: 10,
     title: 'Distributed Job Scheduler',
     shortTitle: 'Distributed Scheduler',
     role: 'Cloud-Native & Distributed Systems Engineer',
@@ -446,7 +575,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/Rutuja-Shukla'
   },
   {
-    id: 9,
+    id: 11,
     title: 'Sentiment Analysis',
     shortTitle: 'Sentiment Analysis',
     role: 'Machine Learning & NLP',
@@ -461,7 +590,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/Rutuja-Shukla/Sentiment-Analysis.git'
   },
   {
-    id: 10,
+    id: 12,
     title: 'Stock Prediction',
     shortTitle: 'Stock Prediction',
     role: 'Quantitative Machine Learning',
@@ -476,7 +605,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/Rutuja-Shukla/Stock-Prediction.git'
   },
   {
-    id: 11,
+    id: 13,
     title: 'Clustering Geolocation Data',
     shortTitle: 'Geolocation Clustering',
     role: 'Data Scientist',
@@ -491,7 +620,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/Rutuja-Shukla/Clustering-Geolocation-Data.git'
   },
   {
-    id: 12,
+    id: 14,
     title: 'Handwritten Digit Recognition',
     shortTitle: 'Digit Recognition',
     role: 'Machine Learning Developer',

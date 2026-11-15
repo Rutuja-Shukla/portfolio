@@ -72,6 +72,7 @@ export const Projects: React.FC = () => {
                 {project.category && (
                   <span className="project-category-badge">
                     {project.category === 'Flagship' ? 'Flagship' : 'AI & ML'}
+                    {project.liveUrl ? ' • Live Demo' : ''}
                   </span>
                 )}
                 <div className="project-overlay">
@@ -129,18 +130,37 @@ export const Projects: React.FC = () => {
                 
                 <p className="modal-description">{selectedProject.fullDescription}</p>
 
-                {selectedProject.githubUrl && (
+                {selectedProject.demoCredentials && (
+                  <div className="modal-demo-creds">
+                    <strong>Demo Sign-In:</strong> <code>{selectedProject.demoCredentials}</code>
+                  </div>
+                )}
+
+                {(selectedProject.liveUrl || selectedProject.githubUrl) && (
                   <div className="modal-links">
-                    <a
-                      href={selectedProject.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="modal-link-button"
-                    >
-                      <GithubIcon size={18} />
-                      <span>View on GitHub</span>
-                      <ExternalLink size={14} />
-                    </a>
+                    {selectedProject.liveUrl && (
+                      <a
+                        href={selectedProject.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="modal-link-button modal-link-primary"
+                      >
+                        <ExternalLink size={16} />
+                        <span>Live Demo</span>
+                      </a>
+                    )}
+                    {selectedProject.githubUrl && (
+                      <a
+                        href={selectedProject.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="modal-link-button"
+                      >
+                        <GithubIcon size={18} />
+                        <span>View on GitHub</span>
+                        <ExternalLink size={14} />
+                      </a>
+                    )}
                   </div>
                 )}
 
