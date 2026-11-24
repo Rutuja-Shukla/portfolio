@@ -7,6 +7,7 @@ import {
   Layers, 
   Wrench, 
   GraduationCap,
+  Building2,
   CheckCircle2,
   Globe,
   Languages,
@@ -75,6 +76,10 @@ export const About: React.FC = () => {
             <span className="profile-tag">
               <Languages size={14} className="text-emerald-500" />
               Languages: {resumeData.languagesSpoken.join(' • ')}
+            </span>
+            <span className="profile-tag">
+              <Building2 size={14} className="text-purple-500" />
+              {resumeData.relocation}
             </span>
           </div>
         </div>

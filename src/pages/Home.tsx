@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Building2, ShieldCheck, CheckCircle2, FileText } from 'lucide-react';
+import { ArrowRight, Building2, ShieldCheck, CheckCircle2, Globe, FileText } from 'lucide-react';
 import { resumeData } from '../data/resumeData';
 import './Home.css';
 
@@ -17,11 +17,15 @@ export const Home: React.FC = () => {
           {resumeData.title}
         </h2>
 
-        {/* Status pills */}
+        {/* Status / Relocation pills */}
         <div className="home-pills-row">
           <span className="home-pill">
             <Building2 size={14} className="text-blue-500" />
             Senior Software Engineer @ Barclays
+          </span>
+          <span className="home-pill">
+            <Globe size={14} className="text-emerald-500" />
+            {resumeData.relocation}
           </span>
           <span className="home-pill">
             <ShieldCheck size={14} className="text-amber-500" />
@@ -36,19 +40,19 @@ export const Home: React.FC = () => {
 
 
 
-        {/* Quantifiable Engineering Metrics */}
+        {/* Quantifiable Engineering Highlights */}
         <div className="home-metrics-grid">
           <div className="metric-card">
             <div className="metric-number">4+</div>
             <div className="metric-label">Years at Barclays</div>
           </div>
           <div className="metric-card">
-            <div className="metric-number">20+</div>
-            <div className="metric-label">Critical Defects Resolved</div>
+            <div className="metric-number">10+</div>
+            <div className="metric-label">AI & FinTech Systems</div>
           </div>
           <div className="metric-card">
-            <div className="metric-number">99.9%</div>
-            <div className="metric-label">Application Availability</div>
+            <div className="metric-number">Full-Stack</div>
+            <div className="metric-label">.NET Core · Angular · SQL</div>
           </div>
           <div className="metric-card">
             <div className="metric-number">9.21</div>

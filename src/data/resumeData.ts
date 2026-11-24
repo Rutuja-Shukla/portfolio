@@ -11,6 +11,7 @@ export interface ResumeData {
   name: string;
   title: string;
   nationality: string;
+  relocation: string;
   languagesSpoken: string[];
   contact: {
     phone: string;
@@ -48,6 +49,7 @@ export const resumeData: ResumeData = {
   name: 'Rutuja Shukla',
   title: 'Full-Stack Software Engineer',
   nationality: 'Indian',
+  relocation: 'Open to relocation',
   languagesSpoken: ['English (Fluent)', 'Hindi (Fluent)'],
   contact: {
     phone: '+918451845728',

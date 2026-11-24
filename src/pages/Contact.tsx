@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Send, CheckCircle2, FileText } from 'lucide-react';
+import { Mail, Phone, Send, CheckCircle2, Globe, FileText } from 'lucide-react';
 import LinkedinIcon from '../components/LinkedinIcon';
 import GithubIcon from '../components/GithubIcon';
 import { resumeData } from '../data/resumeData';
@@ -85,6 +85,16 @@ export const Contact: React.FC = () => {
                   <a href={resumeData.contact.github} target="_blank" rel="noopener noreferrer">
                     github.com/Rutuja-Shukla
                   </a>
+                </div>
+              </div>
+
+              <div className="contact-detail-item">
+                <Globe size={22} className="text-blue-500 flex-shrink-0" />
+                <div>
+                  <h4>Relocation & Availability</h4>
+                  <span style={{ fontSize: '14.5px', color: 'rgba(0,0,0,0.7)' }}>
+                    {resumeData.relocation}
+                  </span>
                 </div>
               </div>
 
