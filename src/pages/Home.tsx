@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Sparkles, Building2, Zap, ShieldCheck, CheckCircle2, Globe, FileText } from 'lucide-react';
+import { ArrowRight, Building2, ShieldCheck, CheckCircle2, FileText } from 'lucide-react';
 import { resumeData } from '../data/resumeData';
 import './Home.css';
 
@@ -17,15 +17,11 @@ export const Home: React.FC = () => {
           {resumeData.title}
         </h2>
 
-        {/* Status / Relocation pills */}
+        {/* Status pills */}
         <div className="home-pills-row">
           <span className="home-pill">
             <Building2 size={14} className="text-blue-500" />
             Senior Software Engineer @ Barclays
-          </span>
-          <span className="home-pill">
-            <Globe size={14} className="text-emerald-500" />
-            {resumeData.relocation}
           </span>
           <span className="home-pill">
             <ShieldCheck size={14} className="text-amber-500" />
